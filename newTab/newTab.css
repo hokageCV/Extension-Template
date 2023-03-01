@@ -1,0 +1,15 @@
+:root {
+    --baseBG: #2e3436;
+    --mainText: #e9dcc9;
+}
+
+body {
+    background-color: var(--baseBG);
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    font-size: 32px;
+    color: var(--mainText);
+}
