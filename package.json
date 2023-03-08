@@ -1,0 +1,14 @@
+{
+  "name": "extension-template",
+  "version": "2.0.0",
+  "description": "simplify some task",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "typescript": "^4.9.5"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.220"
+  }
+}
