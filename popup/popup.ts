@@ -5,9 +5,9 @@ newTabBtn.addEventListener("click", () => {
     const message = { command: "change new tab bg color" };
 
     chrome.tabs.query({}, (tabs) => {
-        for (const tab of tabs) {
-            chrome.tabs.sendMessage(tab.id as number, message);
-        }
+        tabs
+            .filter((tab) => tab.url === "chrome://newtab/")
+            .forEach((tab) => chrome.tabs.sendMessage(tab.id, message));
     });
 });
 
