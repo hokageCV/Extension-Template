@@ -1,5 +1,6 @@
 {
   "name": "extension-template",
+  "type": "module",
   "version": "2.0.0",
   "description": "simplify some task",
   "scripts": {
@@ -9,6 +10,7 @@
     "typescript": "^4.9.5"
   },
   "devDependencies": {
-    "@types/chrome": "^0.0.220"
+    "@types/chrome": "^0.0.220",
+    "ts-node": "^10.9.1"
   }
 }

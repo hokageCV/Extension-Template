@@ -1,23 +1,35 @@
-console.log("popup is running");
+const newTabBtn = document.getElementById("new-tab-btn");
+if (!(newTabBtn instanceof HTMLButtonElement)) {
+    throw new Error("newTabBtn is not a button");
+}
 
-const newTabBtn = document.getElementById("new-tab-btn")!;
+const contentBtn = document.getElementById("content-btn");
+if (!(contentBtn instanceof HTMLButtonElement)) {
+    throw new Error("contentBtn is not a button");
+}
+
+// ==================================
+
 newTabBtn.addEventListener("click", () => {
-    const message = { command: "change new tab bg color" };
-
+    const message = { command: "changeTabColor" };
     chrome.tabs.query({}, (tabs) => {
-        tabs
-            .filter((tab) => tab.url === "chrome://newtab/")
-            .forEach((tab) => chrome.tabs.sendMessage(tab.id, message));
+        const newTabs = tabs.filter((tab) => tab.url === "chrome://newtab/");
+        if (newTabs.length === 0) return;
+
+        newTabs.forEach((tab) =>
+            chrome.tabs.sendMessage(tab.id as number, message)
+        );
     });
 });
 
-const contentBtn = document.getElementById("content-btn")!;
 contentBtn.addEventListener("click", () => {
-    const message = { command: "change content text color" };
+    const message = { command: "changeTextColor" };
 
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-        for (const tab of tabs) {
-            chrome.tabs.sendMessage(tab.id as number, message);
-        }
+        const activeTabId = tabs[0].id as number;
+
+        chrome.tabs.sendMessage(activeTabId, message, (response) => {
+            console.log("🔥 response received in popup: ", response);
+        });
     });
 });

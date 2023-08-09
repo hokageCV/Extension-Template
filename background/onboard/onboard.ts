@@ -1,5 +1,3 @@
-console.log("onboard is running");
-
 document.addEventListener("DOMContentLoaded", () => {
     const input = document.getElementById("input") as HTMLInputElement;
     const btn = document.getElementById("btn")!;

@@ -1,7 +1,4 @@
-console.log("background is running");
-
 chrome.runtime.onInstalled.addListener(async (e) => {
-    console.log(e);
     if (e.reason === chrome.runtime.OnInstalledReason.INSTALL) {
         await chrome.storage.local.set({ isOnboarded: false });
 
